@@ -1,0 +1,9 @@
+CREATE TABLE EmployeeData
+(
+    ID INT PRIMARY KEY IDENTITY(1,1),
+    City NVARCHAR(255),
+    Ceh NVARCHAR(255),
+    Employee NVARCHAR(255),
+    Brigade NVARCHAR(255),
+    Shift NVARCHAR(255)
+);

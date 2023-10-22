@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Form</title>
+</head>
+
+<body>
+
+    <form id="dataForm">
+        <select id="city" onchange="updateCeh();">
+            <option value="city1">Город 1</option>
+            <option value="city2">Город 2</option>
+        </select>
+
+        <select id="ceh">
+            <!-- Данные будут динамически обновляться -->
+        </select>
+
+        <select id="employee">
+            <!-- Данные будут динамически обновляться -->
+        </select>
+
+        <select id="brigade">
+            <!-- Зависит от времени суток -->
+        </select>
+
+        <input type="text" id="shift" placeholder="Смена">
+
+        <button type="submit">Отправить</button>
+    </form>
+
+    <script>
+        function updateCeh() {
+            const city = document.getElementById('city').value;
+            const ceh = document.getElementById('ceh');
+
+            while (ceh.firstChild) {
+                ceh.removeChild(ceh.firstChild);
+            }
+
+            if (city === 'city1') {
+                let option1 = document.createElement('option');
+                option1.value = 'ceh1';
+                option1.text = 'Цех 1';
+                ceh.appendChild(option1);
+
+                let option2 = document.createElement('option');
+                option2.value = 'ceh2';
+                option2.text = 'Цех 2';
+                ceh.appendChild(option2);
+            } else {
+                let option = document.createElement('option');
+                option.value = 'ceh3';
+                option.text = 'Цех 3';
+                ceh.appendChild(option);
+            }
+
+            updateEmployee();
+        }
+
+        function updateEmployee() {
+            const ceh = document.getElementById('ceh').value;
+            const employee = document.getElementById('employee');
+
+            while (employee.firstChild) {
+                employee.removeChild(employee.firstChild);
+            }
+
+            if (ceh === 'ceh1') {
+                let option1 = document.createElement('option');
+                option1.value = 'employee1';
+                option1.text = 'Сотрудник 1';
+                employee.appendChild(option1);
+            } else {
+                let option = document.createElement('option');
+                option.value = 'employee2';
+                option.text = 'Сотрудник 2';
+                employee.appendChild(option);
+            }
+        }
+
+        function updateBrigade() {
+            const brigade = document.getElementById('brigade');
+            let date = new Date();
+            let hour = date.getHours();
+
+            while (brigade.firstChild) {
+                brigade.removeChild(brigade.firstChild);
+            }
+
+            if (hour >= 8 && hour < 20) {
+                let option = document.createElement('option');
+                option.value = 'brigade1';
+                option.text = 'Бригада 1';
+                brigade.appendChild(option);
+            } else {
+                let option = document.createElement('option');
+                option.value = 'brigade2';
+                option.text = 'Бригада 2';
+                brigade.appendChild(option);
+            }
+        }
+
+        updateCeh();
+        updateBrigade();
+    </script>
+</body>
+
+</html>
